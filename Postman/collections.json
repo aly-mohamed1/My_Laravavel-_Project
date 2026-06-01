@@ -1,0 +1,345 @@
+{
+    "info": {
+        "name": "Delivery Tracking System API",
+        "_postman_id": "d1f5c9d2-8b7a-4e21-9c5f-123456789abc",
+        "description": "Delivery Tracking System Laravel API",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "auth": {
+        "type": "bearer",
+        "bearer": [
+            {
+                "key": "token",
+                "value": "{{API_token}}",
+                "type": "string"
+            }
+        ]
+    },
+    "variable": [
+        {
+            "key": "base_url",
+            "value": "http://localhost:9000/api"
+        }
+    ],
+    "item": [
+        {
+            "name": "Deliveries",
+            "variable": [
+                {
+                    "key": "base_delivery",
+                    "value": "{{base_url}}/deliveries"
+                }
+            ],
+            "item": [
+                {
+                    "name": "Get All Deliveries",
+                    "request": {
+                        "method": "GET",
+                        "url": "{{base_delivery}}"
+                    }
+                },
+                {
+                    "name": "Get Delivery",
+                    "request": {
+                        "method": "GET",
+                        "url": "{{base_delivery}}/1"
+                    }
+                },
+                {
+                    "name": "Create Delivery",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"order_id\": 1,\n  \"driver_id\": 1,\n  \"assigned_at\": \"2026-06-01 10:00:00\",\n  \"delivered_at\": null\n}"
+                        },
+                        "url": "{{base_delivery}}"
+                    }
+                },
+                {
+                    "name": "Update Delivery",
+                    "request": {
+                        "method": "PUT",
+                        "url": "{{base_delivery}}/1"
+                    }
+                },
+                {
+                    "name": "Delete Delivery",
+                    "request": {
+                        "method": "DELETE",
+                        "url": "{{base_delivery}}/1"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Delivery Statuses",
+            "variable": [
+                {
+                    "key": "base_delivery_status",
+                    "value": "{{base_url}}/deliveries_statuses"
+                }
+            ],
+            "item": [
+                {
+                    "name": "Get All Statuses",
+                    "request": {
+                        "method": "GET",
+                        "url": "{{base_delivery_status}}"
+                    }
+                },
+                {
+                    "name": "Create Status",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"type\": \"Pending\"\n}"
+                        },
+                        "url": "{{base_delivery_status}}"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Drivers",
+            "variable": [
+                {
+                    "key": "base_driver",
+                    "value": "{{base_url}}/driver"
+                }
+            ],
+            "item": [
+                {
+                    "name": "Get All Drivers",
+                    "request": {
+                        "method": "GET",
+                        "url": "{{base_driver}}"
+                    }
+                },
+                {
+                    "name": "Create Driver",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"user_id\": 1,\n  \"vehicle_type\": \"Motorcycle\",\n  \"license_number\": \"ABC123\",\n  \"status\": \"Available\"\n}"
+                        },
+                        "url": "{{base_driver}}"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Locations",
+            "variable": [
+                {
+                    "key": "base_location",
+                    "value": "{{base_url}}/locations"
+                }
+            ],
+            "item": [
+                {
+                    "name": "Get All Locations",
+                    "request": {
+                        "method": "GET",
+                        "url": "{{base_location}}"
+                    }
+                },
+                {
+                    "name": "Create Location",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"delivery_id\": 1,\n  \"latitude\": 31.2001,\n  \"longitude\": 29.9187\n}"
+                        },
+                        "url": "{{base_location}}"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Notifications",
+            "variable": [
+                {
+                    "key": "base_notification",
+                    "value": "{{base_url}}/notifications"
+                }
+            ],
+            "item": [
+                {
+                    "name": "Get All Notifications",
+                    "request": {
+                        "method": "GET",
+                        "url": "{{base_notification}}"
+                    }
+                },
+                {
+                    "name": "Create Notification",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"user_id\": 1,\n  \"message\": \"Your order is on the way\",\n  \"is_read\": false\n}"
+                        },
+                        "url": "{{base_notification}}"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Orders",
+            "variable": [
+                {
+                    "key": "base_order",
+                    "value": "{{base_url}}/orders"
+                }
+            ],
+            "item": [
+                {
+                    "name": "Get All Orders",
+                    "request": {
+                        "method": "GET",
+                        "url": "{{base_order}}"
+                    }
+                },
+                {
+                    "name": "Create Order",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"user_id\": 1,\n  \"pickup_address\": \"Alexandria\",\n  \"delivery_address\": \"Cairo\",\n  \"total_price\": 250,\n  \"delivery_status_id\": 1\n}"
+                        },
+                        "url": "{{base_order}}"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Roles",
+            "variable": [
+                {
+                    "key": "base_role",
+                    "value": "{{base_url}}/roles"
+                }
+            ],
+            "item": [
+                {
+                    "name": "Get All Roles",
+                    "request": {
+                        "method": "GET",
+                        "url": "{{base_role}}"
+                    }
+                },
+                {
+                    "name": "Create Role",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"name\": \"Driver\"\n}"
+                        },
+                        "url": "{{base_role}}"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Users",
+            "variable": [
+                {
+                    "key": "base_user",
+                    "value": "{{base_url}}/users"
+                }
+            ],
+            "item": [
+                {
+                    "name": "Get All Users",
+                    "request": {
+                        "method": "GET",
+                        "url": "{{base_user}}"
+                    }
+                },
+                {
+                    "name": "Create User",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"role_id\": 1,\n  \"name\": \"Ahmed Mohamed\",\n  \"email\": \"ahmed@example.com\",\n  \"mobile\": \"01012345678\",\n  \"password\": \"Password123\"\n}"
+                        },
+                        "url": "{{base_user}}"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Init",
+            "variable": [
+                {
+                    "key": "base_init",
+                    "value": "{{base_url}}/init"
+                }
+            ],
+            "item": [
+                {
+                    "name": "Models",
+                    "request": {
+                        "method": "GET",
+                        "url": "{{base_init}}/models"
+                    }
+                }
+            ]
+        }
+    ]
+}
